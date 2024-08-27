@@ -20,4 +20,3 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "*.exe"
-        tag: $(git rev-parse --short "$GITHUB_SHA")
