@@ -1,3 +1,9 @@
 # Graph Test Sample
 
-Hello World.
+### Build
+
+Run the following command to build the executable:
+
+```bash
+make
+```
