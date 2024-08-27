@@ -17,3 +17,6 @@ jobs:
       run: sudo apt-get install -y mingw-w64
     - name: make
       run: make
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "*.exe"
