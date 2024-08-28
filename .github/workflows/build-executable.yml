@@ -1,5 +1,3 @@
-name: build-executable
-
 on:
   push:
     tags:
@@ -7,19 +5,12 @@ on:
 
 jobs:
   build:
-
-    runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v4
-    - name: set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: install requriements
-      run: pip install -r requirements.txt
-    - name: run pyinstaller
-      run: pyinstaller -F main.py
+    - name: install mingw-w64
+      run: sudo apt-get install -y mingw-w64
+    - name: make
+      run: make
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "dist/main.exe"
+        artifacts: "*.exe"
