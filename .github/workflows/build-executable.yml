@@ -22,4 +22,4 @@ jobs:
       run: pyinstaller -F main.py
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "dist/*.exe"
+        artifacts: "./dist/main.exe"
