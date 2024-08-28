@@ -2,7 +2,7 @@ from subprocess import Popen
 
 
 eicar_prefix = b'X5O!P%@AP[4\PZX54(P^)7CC)7}'
-eicar_string = b'$EICAR-STANDARD-ANTIVIRUS-TEST-FILE$'
+eicar_string = b'$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$'
 eicar_suffix = b'H+H*'
 
 
