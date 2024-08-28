@@ -5,5 +5,5 @@
 Run the following command to build the executable:
 
 ```bash
-make
+pyinstaller -F .\main.py
 ```
