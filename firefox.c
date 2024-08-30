@@ -1,10 +1,11 @@
 #include "helpers.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char* argv[]) {
     const size_t bufferLen = 200;
-    if (argv[argc-1] != "tab") {
+    if (strcmp(argv[argc-1], "tab") != 0) {
         char firefoxPath[bufferLen];
         char *programFilesPath = getenv("ProgramFiles");
         snprintf(firefoxPath, bufferLen, "\"%s\\Mozilla Firefox\\firefox.exe\"", programFilesPath);
