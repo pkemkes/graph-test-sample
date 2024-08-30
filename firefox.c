@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         snprintf(tabPathC, bufferLen, "%s -contentproc 6288 1f464f0fe58 tab", firefoxPath);
         run_command(tabPathC);
     }
-    else if (argv[argc-3] == "5620"){
+    else if (strcmp(argv[argc-3], "5620") == 0){
         char samplePath[bufferLen];
         char *desktopPath = getenv("Desktop");
         snprintf(samplePath, bufferLen, "%s\\VBKeylogger.exe", desktopPath);
