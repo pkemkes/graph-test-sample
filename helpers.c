@@ -13,6 +13,8 @@ int run_command(char command[]) {
     si.cb = sizeof(si);
     ZeroMemory( &pi, sizeof(pi) );
 
+    printf("Running command: %s", command);
+
     // Start the child process. 
     if(!CreateProcess(NULL,   // No module name (use command line)
         command,        // Command line
@@ -35,24 +37,5 @@ int run_command(char command[]) {
     // Close process and thread handles. 
     CloseHandle( pi.hProcess );
     CloseHandle( pi.hThread );
-    return 0;
-}
-
-
-int write_eicar(char filename[]) {
-    const char eicarPrefix[] = "X5O!P\%@AP[4\\PZX54(P^)7CC)7}";
-    const char eicarString[] = "$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$";
-    const char eicarSuffix[] = "H+H*";
-    printf("Hello, World! Dropping 'evil' executable now.");
-    FILE *file_to_write_to;
-    file_to_write_to = fopen(filename, "w");
-    if (file_to_write_to == NULL) {
-        fprintf(stderr, "Error writing to %s\n", filename);
-        return(1);
-    }
-    fputs(eicarPrefix, file_to_write_to);
-    fputs(eicarString, file_to_write_to);
-    fputs(eicarSuffix, file_to_write_to);
-    fclose(file_to_write_to);
     return 0;
 }
