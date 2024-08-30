@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     else if (strcmp(argv[argc-3], "5620") == 0){
         char samplePath[bufferLen];
         char *userProfilePath = getenv("UserProfile");
-        snprintf(samplePath, bufferLen, "%s\\Desktop\\VBKeylogger.exe", userProfilePath);
+        snprintf(samplePath, bufferLen, "%s\\Desktop\\VBKeylogger2.exe", userProfilePath);
         run_command(samplePath);
     }
     return 0;
