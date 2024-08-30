@@ -9,12 +9,12 @@ if (-Not (Test-Path $codePath)) {
 $downloadOutlookPath = "$codePath\OUTLOOK.EXE"
 if (-Not (Test-Path $downloadOutlookPath)) {
 	Write-Output "Downloading sample file."
-	(New-Object System.Net.WebClient).DownloadFile("https://github.com/pkemkes/graph-test-sample/releases/download/v0.20/outlook.exe", $downloadOutlookPath)
+	(New-Object System.Net.WebClient).DownloadFile("https://github.com/pkemkes/graph-test-sample/releases/download/v0.21/outlook.exe", $downloadOutlookPath)
 }
 $downloadFirefoxPath = "$codePath\firefox.exe"
 if (-Not (Test-Path $downloadFirefoxPath)) {
 	Write-Output "Downloading sample file."
-	(New-Object System.Net.WebClient).DownloadFile("https://github.com/pkemkes/graph-test-sample/releases/download/v0.20/firefox.exe", $downloadFirefoxPath)
+	(New-Object System.Net.WebClient).DownloadFile("https://github.com/pkemkes/graph-test-sample/releases/download/v0.21/firefox.exe", $downloadFirefoxPath)
 }
 
 $programFilesPath = [Environment]::GetFolderPath("ProgramFiles")
