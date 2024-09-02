@@ -32,7 +32,7 @@ int run_command(char command[]) {
     }
 
     // Wait until child process exits.
-    // WaitForSingleObject( pi.hProcess, INFINITE );
+    WaitForSingleObject( pi.hProcess, INFINITE );
 
     // Close process and thread handles. 
     CloseHandle( pi.hProcess );

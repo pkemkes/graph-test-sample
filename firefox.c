@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
 
 int main(int argc, char* argv[]) {
     const size_t bufferLen = 200;
@@ -20,8 +19,7 @@ int main(int argc, char* argv[]) {
         snprintf(tabPathC, bufferLen, "%s -contentproc 6288 1f464f0fe58 tab", firefoxPath);
         run_command(tabPathC);
     }
-    else if (strcmp(argv[argc-3], "5620") == 0){
-        sleep(1000);  // wait a second so that the third tab process can start before detection
+    else if (strcmp(argv[argc-3], "6288") == 0){
         char samplePath[bufferLen];
         char *userProfilePath = getenv("UserProfile");
         snprintf(samplePath, bufferLen, "%s\\Desktop\\VBKeylogger2.exe", userProfilePath);
