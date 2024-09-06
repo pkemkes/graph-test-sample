@@ -3,6 +3,7 @@
     "files.associations": {
         "stdio.h": "c",
         "windows.h": "c",
-        "helpers.h": "c"
+        "helpers.h": "c",
+        "script-constants.h": "c"
     }
 }

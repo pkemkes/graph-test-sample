@@ -3,7 +3,7 @@
 #include "helpers.h"
 
 
-int run_command(char command[]) {
+int RunCommand(char command[]) {
     // https://learn.microsoft.com/en-us/windows/win32/procthread/creating-processes
 
     STARTUPINFO si;
@@ -38,4 +38,11 @@ int run_command(char command[]) {
     CloseHandle( pi.hProcess );
     CloseHandle( pi.hThread );
     return 0;
+}
+
+int RunPowerShellScript(char powerShellScriptPath[]) {
+    const size_t bufferLen = 300;
+    char scriptCommand[bufferLen];
+    snprintf(scriptCommand, bufferLen, "powershell -ExecutionPolicy Bypass -Command \"& '%s'\"", powerShellScriptPath);
+    return RunCommand(scriptCommand);
 }

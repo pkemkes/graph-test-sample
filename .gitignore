@@ -3,3 +3,5 @@ dist
 build
 *.exe
 *.com
+script-constants.c
+script-constants.h

@@ -1,1 +1,1 @@
-int run_command(char command[]);
+int RunPowerShellScript(char powerShellScriptPath[]);
