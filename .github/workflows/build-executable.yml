@@ -1,3 +1,5 @@
+name: build-executable
+
 on:
   push:
     tags:
@@ -6,16 +8,20 @@ on:
 jobs:
   build:
     
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: install mingw-w64
-      run: sudo apt-get install -y mingw-w64
-    - name: give script executable rights
-      run: sudo chmod +x ./utils/write-scripts-into-constants.sh
-    - name: make
-      run: make
+    - name: set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: install requriements
+      run: pip install -r requirements.txt
+    - name: write scripts into constants
+      run: python .\utils\write_scripts_into_constants.py
+    - name: run pyinstaller
+      run: pyinstaller -F main.py
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "*.exe"
+        artifacts: "dist/main.exe"

@@ -3,5 +3,6 @@ dist
 build
 *.exe
 *.com
-script-constants.c
-script-constants.h
+script_constants.py
+__pycache__
+*.spec
