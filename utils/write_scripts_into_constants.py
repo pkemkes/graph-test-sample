@@ -33,7 +33,7 @@ for script_path in script_filenames:
         output_code_file_content += f"const char *{script_filename}_script = \n"
         for line in f.readlines():
             line = line.rstrip().replace("\\", "\\\\").replace("\"", "\\\"")
-            output_code_file_content += f"\"{line}\"\n"
+            output_code_file_content += f"\"{line}\\n\"\n"
         output_code_file_content += ";\n"
     print(f"Read {script_path}")
 
