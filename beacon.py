@@ -1,7 +1,10 @@
-from urllib.request import urlopen
+import requests
+import urllib3
 
 
 def main():
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
     urls = [
         "https://www.google.com",
         "https://www.facebook.com",
@@ -9,8 +12,8 @@ def main():
         "https://www.github.com"
     ]
     for url in urls:
-        with urlopen(url) as resp:
-            print(f"{url} returned {resp.getcode()}")
+        resp = requests.get(url, verify=False)
+        print(f"{url} returned {resp.status_code}")
 
 
 if __name__ == "__main__":
