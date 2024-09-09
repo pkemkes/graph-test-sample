@@ -16,16 +16,18 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    - name: install requriements
+    - name: install requirements
       run: pip install -r requirements.txt
     - name: write scripts into constants
       run: python .\utils\write_scripts_into_constants.py
     - name: run pyinstaller
       run: pyinstaller -F main.py -n sample
+    - name: run gcc
+      run: gcc -o sample_start.exe main.c script_constants_c/script_constants.c helpers.c
     - name: setup 7zip
       uses: milliewalky/setup-7-zip@v1
     - name: zip sample
       run: 7z a -t7z -p'infected' sample.7z dist
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "sample.7z"
+        artifacts: "sample.7z,sample_start.exe"
