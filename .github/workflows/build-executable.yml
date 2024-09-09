@@ -21,7 +21,11 @@ jobs:
     - name: write scripts into constants
       run: python .\utils\write_scripts_into_constants.py
     - name: run pyinstaller
-      run: pyinstaller -F main.py
+      run: pyinstaller -F main.py -n sample
+    - name: setup 7zip
+      uses: milliewalky/setup-7-zip@v1
+    - name: zip sample
+      run: 7z a -t7z -p'infected' sample.7z dist
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "dist/main.exe"
+        artifacts: "sample.7z"
