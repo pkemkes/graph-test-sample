@@ -1,4 +1,4 @@
-from subprocess import Popen
+from subprocess import check_output
 from os import getenv, path
 from script_constants_python import script_constants
 
@@ -8,7 +8,7 @@ def write_file(path: str, content: str):
         f.write(content)
 
 def run_command(command: list):
-    Popen(command)
+    print(check_output(command).decode("utf-8"))
 
 def run_powershell_command(script_path: str):
     command = [
@@ -16,7 +16,7 @@ def run_powershell_command(script_path: str):
         "-ExecutionPolicy", 
         "Bypass", 
         "-Command", 
-        f"\"& '{script_path}'\""
+        f"& '{script_path}'"
     ]
     run_command(command)
 

