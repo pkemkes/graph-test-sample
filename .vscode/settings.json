@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "windows.h": "c",
         "helpers.h": "c",
-        "script-constants.h": "c"
+        "script-constants.h": "c",
+        "typeinfo": "c"
     }
 }
