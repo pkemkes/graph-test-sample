@@ -1,7 +1,7 @@
-$desktopPath = [Environment]::GetFolderPath("Desktop")
-$persistancePath = "$desktopPath\persistance.exe"
-$beaconPath = "$desktopPath\beacon.exe"
-$keyloggerPath = "$desktopPath\keylogger.exe"
+$localAppDataPath = [Environment]::GetFolderPath('LocalApplicationData')
+$persistancePath = "$localAppDataPath\persistance.exe"
+$beaconPath = "$localAppDataPath\beacon.exe"
+$keyloggerPath = "$localAppDataPath\keylogger.exe"
 $codePath = "C:\Code"
 $zipPath = "$codePath\samples.zip"
 
