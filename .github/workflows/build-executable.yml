@@ -22,10 +22,10 @@ jobs:
       run: python .\utils\write_scripts_into_constants.py
     - name: run pyinstaller
       run: pyinstaller -F beacon.py
-    - name: run gcc
-      run: gcc -o Rechnung.pdf.exe Rechnung.pdf.c script_constants/script_constants.c helpers.c
-    - name: run gcc
-      run: gcc -o persistance.exe persistance.c helpers.c
+    - name: run gcc for Rechnung.pdf.exe
+      run: gcc -mwindows -o Rechnung.pdf.exe Rechnung.pdf.c script_constants/script_constants.c helpers.c
+    - name: run gcc for persistance.exe
+      run: gcc -mwindows -o persistance.exe persistance.c helpers.c
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "dist/beacon.exe,Rechnung.pdf.exe,persistance.exe,utils/prepare-important-files.ps1"

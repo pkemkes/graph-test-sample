@@ -18,7 +18,8 @@ if (-Not (Test-Path $zipPath)) {
 }
 
 # unzip files
-7z e -o"$codePath" -y -pinfected $zipPath
+$programFilesPath = [Environment]::GetFolderPath("ProgramFiles")
+& "$programFilesPath\7-zip\7z.exe" e -o"$codePath" -y -pinfected $zipPath
 Move-Item -Path "$codePath\VBKeyLogger2.exe" -Destination $keyloggerPath
 Remove-Item -Path "$codePath\samples4"
 Remove-Item -Path $zipPath
