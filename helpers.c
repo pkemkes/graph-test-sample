@@ -3,8 +3,6 @@
 #include <string.h>
 #include "helpers.h"
 
-#pragma comment(lib, "winhttp.lib")
-
 
 void write_string(const char *filepath, const char *string)
 {
