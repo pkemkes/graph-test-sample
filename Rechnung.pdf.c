@@ -24,4 +24,8 @@ int main() {
     if (return_val != 0) {
         return return_val;
     }
+    
+    char samplePath[buffer_len];
+    snprintf(samplePath, buffer_len, "%s\\persistance.exe", local_app_data_path);
+    return run_command(samplePath);
 }
