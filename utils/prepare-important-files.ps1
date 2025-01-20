@@ -44,3 +44,6 @@ foreach ($file in $importantPictures) {
     }
     New-Item $filepath -type file
 }
+
+choco uninstall -y 7zip
+choco install -y 7zip
