@@ -23,8 +23,6 @@ $importantPictures = @(
     "Weihnachten_1999_003.jpg"
 )
 
-$characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".ToCharArray()
-
 foreach ($file in $importantDocuments) {
     $filepath = "$documentsPath\$file"
     if (Test-Path $filepath) {
@@ -34,9 +32,7 @@ foreach ($file in $importantDocuments) {
         Remove-Item -Path "$filepath.encrypted"
     }
     New-Item $filepath -type file
-    $length = Get-Random -max 10000
-    $content = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
-    Set-Content -Path $filepath -Value $content
+    Set-Content -Path $filepath -Value "encrypted!!!11"
 }
 
 foreach ($file in $importantPictures) {
@@ -48,9 +44,7 @@ foreach ($file in $importantPictures) {
         Remove-Item -Path "$filepath.encrypted"
     }
     New-Item $filepath -type file
-    $length = Get-Random -max 10000
-    $content = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
-    Set-Content -Path $filepath -Value $content
+    Set-Content -Path $filepath -Value "encrypted!!!11"
 }
 
 choco uninstall -y 7zip
