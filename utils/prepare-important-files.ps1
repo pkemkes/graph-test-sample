@@ -34,7 +34,7 @@ foreach ($file in $importantDocuments) {
         Remove-Item -Path "$filepath.encrypted"
     }
     New-Item $filepath -type file
-    $length = Get-Random -max 10000
+    $length = Get-Random -max 1000
     $content = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
     Set-Content -Path $filepath -Value $content
 }
@@ -48,10 +48,51 @@ foreach ($file in $importantPictures) {
         Remove-Item -Path "$filepath.encrypted"
     }
     New-Item $filepath -type file
-    $length = Get-Random -max 10000
+    $length = Get-Random -max 1000
     $content = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
     Set-Content -Path $filepath -Value $content
 }
 
-choco uninstall -y 7zip
+$localAppDataPath = [Environment]::GetFolderPath("LocalApplicationData")
+$userProfilePath = [Environment]::GetFolderPath("UserProfile")
+$downloadsPath = "$userProfilePath\Downloads"
+$desktopPath = [Environment]::GetFolderPath("Desktop")
+$directories = @(
+    $localAppDataPath,
+    $downloadsPath,
+    $desktopPath
+)
+$temporaryFiles = @(
+    "Rechnung.pdf.exe",
+    "keylogger.exe",
+    "persistance.exe",
+    "beacon.exe",
+    "crypt.ps1",
+    "download.ps1",
+    "README_ransomnote.html"
+)
+foreach ($file in $temporaryFiles) {
+    foreach ($directory in $directories) {
+        $filepath = "$directory\$file"
+        if (Test-Path $filepath) {
+            Remove-Item -Path $filepath
+        }
+    }
+}
+
+$startUpRegKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+$registryValueNames = @(
+    "keylogger",
+    "beacon"
+)
+foreach ($valueName in $registryValueNames) {
+    if (Get-ItemProperty -Path $startUpRegKey -Name $valueName -ErrorAction SilentlyContinue) {
+        Remove-ItemProperty -Path $startUpRegKey -Name $valueName
+    }
+    else {
+        Write-Output "Registry value $startUpRegKey\$valueName does not exist."
+    }
+}
+
+choco uninstall -y -x 7zip
 choco install -y 7zip
